@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmls:th="http://www.thymeleaf.org"></html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>MovieList Testing</title>
+<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}"/>
+<style type="text/css">
+body{
+	background:#B1624EFF;
+	color:gold;
+}
+</style>
+</head>
+<body>
+	<div th:if="${cart!=null}">
+	<h1>Movie List</h1>
+	<table class="table table-stripped">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Studio</th>
+				<th>Year</th>
+				<th>Genre</th>
+			</tr>
+		</thead>
+		<tbody>
+		
+			<tr th:each="movie : ${cart.movies}">
+				<td th:text="${movie.name}"></td>
+				<td th:text="${movie.studio}"></td>
+				<td th:text="${movie.year}"></td>
+				<td th:text="${movie.genre}"></td>
+			</tr>
+		</tbody>
+	</table>
+	<br>
+		<a href="/movie" style="color: #a5ba93; font-weight: bold; text-decoration: underline;">
+			Go to movie configure
+		</a>
+	</div>
+	<div th:if="${cart == null}">
+		<h2>Sorry, there is no movie in the list.</h2>
+		<br>
+		<a href="/movie" style="color: #a5ba93; font-weight: bold; text-decoration: underline;">
+			Go to movie configure
+		</a>
+	</div>
+</body>
+</html>

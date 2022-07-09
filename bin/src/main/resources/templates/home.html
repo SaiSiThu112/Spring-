@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmls:th="http://www.thymeleaf.org"></html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Testing SpringBoot</title>
+<link th:href="@{/css/main.css}" rel="stylesheet"/>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+</head>
+<body>
+	<h1>Welcome to our Spring Boot</h1>
+	<img th:src="@{/images/erisMeow.jpg}"/>
+	<br><br>
+	<a class="nav-link" href="/movie">Go to movie configure</a>
+	<div th:insert="fragments/footer :: footer"></div>
+</body>
+</html>

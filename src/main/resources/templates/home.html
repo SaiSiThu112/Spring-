@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml"
+	  xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta lang="en">
+<title>SpringBoot</title>
+</head>
+<div th:insert="fragments/header :: header"></div>
+<body>
+	 <h1>Welcome to Our Spring Boot</h1>
+	 <br/>
+	 <!--  <img th:src="@{/imgaes/welcome.jpg}" alt="Welcome Photo">-->
+	  <img  src="https://i0.wp.com/anitrendz.net/news/wp-content/uploads/2022/03/My-Dressup-Darling-ep11-e1648768880851.jpg?resize=696%2C377&ssl=1" 
+	  		alt="little kitagawa-san image">
+	 <br/>
+	 <br/>
+	 <a class="btn btn-outline-secondary" href="/movie">Go to Movie View</a>
+	 <br/>	 
+	 <div th:insert="fragments/footer :: footer"></div>
+</body>
+	
+</html>

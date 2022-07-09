@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml"
+	  xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Movie List View</title>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/movielist.css">
+</head>
+<body>
+	<div th:if="${movieList != null}">
+		<table class="table table-stripped">
+		<thead>
+			<tr>
+				<th> Name </th>
+				<th> Director </th>
+				<th> Year </th>
+				<th> Genres </th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="movie : ${movieList}">
+				<td th:text="${movie.name}"></td>
+				<td th:text="${movie.director}"></td> 		
+				<td th:text="${movie.year}"></td>
+				<td th:text="${movie.genre}"></td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	<div th:if="${movieList == null}">
+		<h3 style="color: red;"> No Data in your Movie List! </h3>
+	</div>
+	<a class="btn btn-primary" href="/movie"> Back </a>
+</body>
+</html>

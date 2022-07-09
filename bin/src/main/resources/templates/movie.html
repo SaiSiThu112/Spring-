@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmls:th="http://www.thymeleaf.org"></html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Movie Testing</title>
+<link th:href="@{/css/movieView.css}" rel="stylesheet"/>
+<div th:insert="fragments/header :: header"></div>
+</head>
+
+<style>
+.validationError
+{
+	color:red;
+}
+
+body
+{
+	background:#27a378;
+}
+
+label
+{
+	font-size:large;
+	color:black;
+}
+</style>
+<body>
+	<form method="POST" th:object="${movie}">
+	<div class="col-sm-4">
+		<div class="form-group">
+			<label for="name">Name</label> 
+			<input type="text" th:field="*{name}" class="form-control"/> 
+			<span class="validationError"
+			th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</span>
+		</div>
+		
+		<div class="form-group">
+			<label for="studio">Studio</label>
+			<input type="text" th:field="*{studio}" class="form-control"/> 
+			<span class="validationError"
+			th:if="${#fields.hasErrors('studio')}" th:errors="*{studio}">Director Error</span>
+		</div>
+		
+		<div class="form-group">
+			<label for="genre">Genre</label>
+			 <select class="form-control selectpicker" th:field="*{genre}">
+                        <option value="">Nothing selected</option>
+                        <option th:each="g : ${genres}"
+                        		th:value="${g}"
+                        	    th:text="${g}">genre
+                        </option>
+                        <!--  
+                        <option th:each="g : ${T(com.spring.javaEE.model.Genres).values()}"
+                                th:value="${g}"
+                                th:text="${g}">genre
+                        </option>
+						-->
+                    </select>
+		</div>
+			
+		<div class="form-group">
+			<label for="year">Year</label>
+			<input type="text" th:field="*{year}" class="form-control"/> 
+			<span class="validationError"
+			th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Year Error</span>
+		</div>
+	
+		<button type="submit" class="btn btn-primary">Create</button>	
+	</form>
+	</div>
+	
+	<div th:insert="fragments/footer :: footer"></div>
+</body>
+</html>
