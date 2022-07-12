@@ -16,6 +16,8 @@
 				<th> Director </th>
 				<th> Year </th>
 				<th> Genres </th>
+				<th> Update </th>
+				<th> Delete </th>
 			</tr>
 		</thead>
 		<tbody>
@@ -24,6 +26,12 @@
 				<td th:text="${movie.director}"></td> 		
 				<td th:text="${movie.year}"></td>
 				<td th:text="${movie.genre}"></td>
+				<td>
+					<a class="btn btn-outline-secondary"th:href="@{'update/'}+${movie.id}" > Update </a>
+				</td>
+				<td>
+					<a class="btn btn-outline-danger" th:href="@{'delete/'+${movie.id}}" > Delete </a>
+				</td>
 			</tr>
 		</tbody>
 	</table>
@@ -31,6 +39,6 @@
 	<div th:if="${movieList == null}">
 		<h3 style="color: red;"> No Data in your Movie List! </h3>
 	</div>
-	<a class="btn btn-primary" href="/movie"> Back </a>
+	<a class="btn btn-primary" href="/movie"> Go back to movie</a>
 </body>
 </html>

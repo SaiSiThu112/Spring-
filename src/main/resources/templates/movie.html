@@ -10,7 +10,8 @@
 <body>
 	<div class="container">
 	</div>
-	<form method="POST" th:object="${movie}">
+	<form method="POST" th:object="${movie}" action="/movie">
+	<input type="hidden" th:field="*{id}" class="form-control" /> 
 		<div class="col-sm-4">
 			<div class="form-group">
 				<label for="name">Name</label> 

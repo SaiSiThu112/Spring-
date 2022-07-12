@@ -21,13 +21,13 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String Home() {
-		System.out.println("HomeController");
-		List<Movie> movies = this.movieRepository.findAll(); 
-		log.info("Movie "+movies.get(0));
-		log.info("No of movie "+movies.size());
-		this.movieRepository.findAll();
-		Optional<Movie> movieId = this.movieRepository.findById(1L);
-		log.info("Movie id "+movieId);
+		log.info("HomeController");
+		//List<Movie> movies = this.movieRepository.findAll(); 
+		//log.info("Movie "+movies.get(0));
+		//log.info("No of movie "+movies.size());
+		//this.movieRepository.findAll();
+		//Optional<Movie> movieId = this.movieRepository.findById(1L);
+		//log.info("Movie id "+movieId);
 		return "home";
 	}
 	
