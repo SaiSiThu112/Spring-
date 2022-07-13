@@ -55,12 +55,18 @@
 			   		 Year Error
 				</span>
 			</div>
-
-			<button type="submit" class="btn btn-primary">Create</button>
+			
+			<div th:if="${movie.id}">
+				<button type="submit" class="btn btn-primary"> Update </button>
+			</div> 
+			
+			<div th:if="${movie.id==null}">
+				<button type="submit" class="btn btn-primary"> Create </button>
+			</div>
+			
 		</div>
 	</form>
 	
-
 	<div th:insert="fragments/footer :: footer"></div>
 </body>
 </html>
