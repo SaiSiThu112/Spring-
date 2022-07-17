@@ -1,5 +1,8 @@
 package com.spring.javaEE.controller;
 
+import java.util.List;
+
+
 import javax.validation.Valid
 
 ;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.spring.javaEE.Service.MovieService;
@@ -129,10 +133,59 @@ public class MovieController {
 	@GetMapping("delete/{movieId}")
 	public String deleteMovie(@PathVariable Long movieId) {
 		log.info("Delete movie id "+movieId);
+		
 		this.movieService.deleteMovieById(movieId);
 		
 		return "redirect:/movie/movie-list";
 	}
 	
+	@GetMapping("search")
+	public String findByName(@RequestParam String name , Model model) {
+		log.info("Search movie name "+name);
+		
+		List<MovieDto> movies = this.movieService.getMovieByName(name);
+		model.addAttribute("movieList",movies);
+		
+		return "movie-list";
+	}
+	
+	@GetMapping("search-like")
+	public String findByNameLikeOne(@RequestParam String name , Model model) {
+		log.info("Search movie name like "+name);
+		
+		List<MovieDto> movies = this.movieService.getMovieByNameLike("%"+name+"%");
+		model.addAttribute("movieList",movies);
+		
+		return "movie-list";
+	}
+	
+	@GetMapping("search-like-contain")
+	public String findByNameLike(@RequestParam String name, Model model) {
+		log.info("Search movie name contain "+name);
+		
+		List<MovieDto> movies = this.movieService.getMovieByNameContain(name);
+		model.addAttribute("movieList",movies);
+		
+		return "movie-list";
+	}
+	
+	@GetMapping("search-year-greater-than")
+	public String findByYearGreaterThan(@RequestParam Long year , Model model) {
+		log.info("Search year greaterthan "+year);
+		
+		List<MovieDto> movies = this.movieService.getMovieByYearGreaterThan(year);
+		model.addAttribute("movieList",movies);
+		
+		return "movie-list";
+	}
+	
+	@GetMapping("/movie-list-by-page")
+	public String movieListByPage(@RequestParam int pageNo, @RequestParam int pageSize, Model model) {
+		
+		List<MovieDto> movies = this.movieService.getAllMovieByPage(pageNo, pageSize);
+		model.addAttribute("movieList",movies);
+		
+		return "movie-list";
+	}
 	
 }

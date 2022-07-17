@@ -9,7 +9,7 @@
 		<script type="text/javascript" th:href="@{/js/main.js}"></script>
 		<link rel="stylesheet" th:href="@{/css/main.css}">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-			<a class="navbar-brand" href="/" style="color: aqua;">Home</a>
+			<h1 style="color: maroon">Movie Configure</h1>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarNav" aria-controls="navbarNav"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -17,6 +17,9 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href="/">Home</a>
+					</li>
 					<li class="nav-item active">
 						<a class="nav-link" href="/movie">Movie
 							<!--  <span class="sr-only">(current)</span> -->
@@ -28,9 +31,12 @@
 					<li class="nav-item">
 						<a class="nav-link" href="/movie/movie-list">Movie List</a>
 					</li>
+				<!-- 	<li>
+						<a class="nav-link" type="submit" href="search"> Search </a>
+					</li>  -->
 					<li class="nav-item">
 						<a class="nav-link disabled" href="#">Disabled</a>
-					</li>
+					</li>		
 				</ul>
 			</div>
 		</nav>
