@@ -1,0 +1,4 @@
+for api doc
+http://localhost:8080/v3/api-docs/
+for swagger
+http://localhost:8080/swagger-ui.html

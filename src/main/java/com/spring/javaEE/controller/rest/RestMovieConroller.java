@@ -2,6 +2,7 @@ package com.spring.javaEE.controller.rest;
 
 import java.util.List;
 
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,18 +21,37 @@ import org.springframework.web.bind.annotation.RestController;
 import com.spring.javaEE.Service.MovieService;
 import com.spring.javaEE.dto.MovieDto;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RequestMapping("/api/movies")
 @RestController
+@Tag(name="movie",description="thie movie API")
 public class RestMovieConroller {
 	
 	@Autowired
 	MovieService movieService;
 	
+	/*
+	 * Need to write the Operation annotation when you download old version OpenAPI dependency 
+	 */
+	
+	@Operation(summary = "Find all movie" , description ="Get all movie" , tags={"movie"})
 	@GetMapping
 	List<MovieDto> getAllMovie() {
 		return movieService.getAllMovie();
 	}
 	
+	
+	@Operation(summary = "Get a movie", description = "Get movie by Id", tags = { "movie" })
+	@ApiResponses(value = {
+	        @ApiResponse(responseCode = "200", description = "successful fetch a movie"),
+	        @ApiResponse(responseCode = "404", description = "movie not found")
+	        })
 	@GetMapping("/{id}")
 	ResponseEntity<MovieDto> getMovieById(@PathVariable Long id){
 		MovieDto movie = this.movieService.getMovieById(id);
@@ -54,7 +74,13 @@ public class RestMovieConroller {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result.getAllErrors());
 		}
 	}
-
+	
+	@Operation(summary = "Save a Movie", description = "Save", tags = { "movie" })
+	@ApiResponses(value = {
+	        @ApiResponse(responseCode = "201", description = "successful create a movie",
+	        		content = @Content(schema = @Schema(implementation = MovieDto.class))),
+	        @ApiResponse(responseCode = "400", description = "Validation error")
+	        })
 	@PostMapping
 	ResponseEntity<Object> saveMovie(@Valid @RequestBody MovieDto movie , BindingResult result){
 		return saveOrUpdateMovie(movie, result);
